@@ -40,6 +40,7 @@ EOF
     mariadbd --user=root --bootstrap --password="$MYSQL_ROOT_PASSWORD" --verbose=0 < $tfile
     rm -f $tfile
 
+
     if [ -n "$MYSQL_DATABASE" ]; then
         echo "[i] Создаём базу данных ..."
         echo "CREATE DATABASE IF NOT EXISTS \`$MYSQL_DATABASE\` CHARACTER SET utf8 COLLATE utf8_general_ci;" | mariadb --user=root --password="$MYSQL_ROOT_PASSWORD"
@@ -51,6 +52,28 @@ EOF
         echo "GRANT ALL PRIVILEGES ON \`$MYSQL_DATABASE\`.* TO '$MYSQL_USER'@'$MYSQL_USER_HOST';" | mariadb --user=root --password="$MYSQL_ROOT_PASSWORD"
         echo "FLUSH PRIVILEGES;" | mariadb --user=root --password="$MYSQL_ROOT_PASSWORD"
     fi
+
+    tsfile=$(mktemp)
+    cat << EOF > $tsfile
+USE "$MYSQL_DATABASE";
+
+CREATE TABLE IF NOT EXISTS test_table (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO test_table (name, email) VALUES
+('John Doe', 'john@example.com'),
+('Jane Smith', 'jane@example.com'),
+('Alice Brown', 'alice@example.com'),
+('Bob White', 'bob@example.com');
+
+EOF
+
+    mariadbd --user=root --password="$MYSQL_ROOT_PASSWORD" < $tsfile
+
 
 fi
 
