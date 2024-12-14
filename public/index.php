@@ -1,5 +1,5 @@
 <?php
-
+var_dump("work");
 function loadEnv($filePath) {
     if (!file_exists($filePath)) {
         throw new Exception(".env file not found at $filePath");

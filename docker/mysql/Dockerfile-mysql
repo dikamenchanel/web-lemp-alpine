@@ -20,7 +20,7 @@ RUN apk add --no-cache mariadb mariadb-client && \
 
 ADD run.sh /scripts/run.sh
 
-ADD my.cnf /etc/my.cnf
+COPY my.cnf /etc/my.cnf
 
 RUN mkdir /docker-entrypoint-initdb.d && \
     mkdir /scripts/pre-exec.d && \
@@ -29,6 +29,5 @@ RUN mkdir /docker-entrypoint-initdb.d && \
 
 
 EXPOSE 3306
-
 
 ENTRYPOINT ["/scripts/run.sh"]

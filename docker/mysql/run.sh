@@ -53,28 +53,6 @@ EOF
         echo "FLUSH PRIVILEGES;" | mariadb --user=root --password="$MYSQL_ROOT_PASSWORD"
     fi
 
-    tsfile=$(mktemp)
-    cat << EOF > $tsfile
-USE "$MYSQL_DATABASE";
-
-CREATE TABLE IF NOT EXISTS test_table (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-INSERT INTO test_table (name, email) VALUES
-('John Doe', 'john@example.com'),
-('Jane Smith', 'jane@example.com'),
-('Alice Brown', 'alice@example.com'),
-('Bob White', 'bob@example.com');
-
-EOF
-
-    mariadbd --user=root --password="$MYSQL_ROOT_PASSWORD" < $tsfile
-
-
 fi
 
 # Запуск MariaDB
