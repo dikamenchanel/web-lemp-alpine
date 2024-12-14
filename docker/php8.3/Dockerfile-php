@@ -1,0 +1,49 @@
+FROM alpine:latest
+
+RUN apk update && apk add --no-cache \
+bash \
+php \
+php-fpm \
+php-opcache \
+php-cli \
+php-json \
+php-session \
+php-mysqli \
+php-pdo \
+php-pdo_mysql \
+php-zip \
+php-curl \
+php-gd \
+php-phar \
+php-mbstring \
+php-tokenizer \
+php-ctype \
+php-dom \
+php-xml \
+php-xmlwriter \
+php-sqlite3 \
+php-fileinfo \
+git \
+curl \
+&& rm -rf /var/cache/apk/*
+
+RUN curl -sS https://getcomposer.org/installer -o composer-setup.php && \
+    php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
+    rm composer-setup.php
+
+
+RUN addgroup -S nginx && adduser -S nginx -G nginx
+
+COPY ./www.conf /etc/php83/php-fpm.d/www.conf
+
+RUN mkdir -p /run/php && \
+    mkdir -p /var/www/html && \
+    chown -R nginx:nginx /run/php /var/www/html && \
+    chown -R 755 /var/www/html && \
+    chown -R 775 /run/php
+
+WORKDIR /var/www/html
+
+VOLUME /run/php
+
+CMD ["php-fpm83", "-F"]
