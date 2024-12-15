@@ -15,7 +15,7 @@ LABEL maintainer="Dikamen <dikamenchanel@systems>" \
     # org.opencontainers.image.revision=$VCS_REF \
     # org.opencontainers.image.created=$BUILD_DATE
 
-RUN apk add --no-cache mariadb mariadb-client mariadb-server-utils pwgen && \
+RUN apk add --no-cache mariadb mariadb-client  pwgen && \
     rm -f /var/cache/apk/*
 
 ADD run.sh /scripts/run.sh
@@ -27,6 +27,7 @@ RUN mkdir /docker-entrypoint-initdb.d && \
     mkdir /scripts/pre-init.d && \
     chmod -R 755 /scripts
 
+RUN mariadb-install-db --user=mysql --datadir=/var/lib/mysql
 
 EXPOSE 3306
 
