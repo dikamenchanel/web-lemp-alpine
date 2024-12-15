@@ -92,8 +92,16 @@
 ### Запуск проекта
 1. Клонируйте репозиторий:
    ```bash
-   git clone <ссылка на репозиторий>
-   cd <название репозитория>
+   git clone [<ссылка на репозиторий>](https://github.com/dikamenchanel/web-lemp-alpine.git)
+   ```
+ИЛИ
+
+   ```bash
+   git clone [<ссылка на репозиторий>]git@github.com/dikamenchanel/web-lemp-alpine.git
+   ```
+
+   ```bash
+   cd web-lemp-alpine
    ```
 
 2. Запустите контейнеры:
