@@ -22,9 +22,10 @@ fi
 # Инициализация базы данных
 if [ ! -d /var/lib/mysql ]; then
     echo "[i] Инициализация MariaDB..."
-    # mariadb-install-db --user=root --password="$MYSQL_ROOT_PASSWORD" --datadir=/var/lib/mysql > /dev/null
+    mariadb-install-db --user=root --datadir=/var/lib/mysql > /dev/null
 
     echo "[i] Создаём начальную конфигурацию..."
+
     tfile=$(mktemp)
     cat << EOF > $tfile
 USE mysql;
@@ -34,7 +35,6 @@ DROP DATABASE IF EXISTS test;
 DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
 FLUSH PRIVILEGES;
 EOF
-
 
 
     mariadbd --user=root --bootstrap --password="$MYSQL_ROOT_PASSWORD" --verbose=0 < $tfile
@@ -57,5 +57,5 @@ fi
 
 # Запуск MariaDB
 echo "[i] Запуск MariaDB..."
-exec mariadbd-safe --console --datadir=/var/lib/mysql --user=mysql "$@"
+exec mariadbd-safe --console --datadir=/var/lib/mysql --user=root "$@"
 
