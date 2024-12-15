@@ -92,12 +92,12 @@
 ### Запуск проекта
 1. Клонируйте репозиторий:
    ```bash
-   git clone [<ссылка на репозиторий>](https://github.com/dikamenchanel/web-lemp-alpine.git)
+   git clone https://github.com/dikamenchanel/web-lemp-alpine.git
    ```
-ИЛИ
+   ИЛИ
 
    ```bash
-   git clone [<ссылка на репозиторий>]git@github.com/dikamenchanel/web-lemp-alpine.git
+   git clone git@github.com:dikamenchanel/web-lemp-alpine.git
    ```
 
    ```bash
