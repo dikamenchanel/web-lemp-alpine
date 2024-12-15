@@ -41,7 +41,7 @@ $dbUser = getenv('MYSQL_USER');
 $dbPassword = getenv('MYSQL_PASSWORD');
 $charset = getenv('MYSQL_CHARSET');
 
-var_dump($port);
+
 $dsn = "mysql:host=mysql;dbname=$dbName;";
 $options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -55,13 +55,14 @@ try {
 
     // Выполнение запроса
     $stmt = $pdo->query("SELECT * FROM users");
-    var_dump($stmt);
+
     // Отображение данных
     echo "<table border='1'>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Age</th>
                 <th>Created At</th>
             </tr>";
     while ($row = $stmt->fetch()) {
@@ -69,6 +70,7 @@ try {
                 <td>{$row['id']}</td>
                 <td>{$row['name']}</td>
                 <td>{$row['email']}</td>
+                <td>{$row['age']}</td>
                 <td>{$row['created_at']}</td>
               </tr>";
     }

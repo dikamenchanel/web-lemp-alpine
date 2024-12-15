@@ -79,17 +79,6 @@ VALUES
     ('Alice Johnson', 'alice.johnson@example.com', 27),
     ('Bob Brown', 'bob.brown@example.com', 35);
 
-
--- Вставка случайных данных
-INSERT INTO users (name, email, age)
-SELECT
-    CONCAT('User ', FLOOR(RAND() * 10000)),  
-    CONCAT('user', FLOOR(RAND() * 10000), '@example.com'),  
-    FLOOR(RAND() * 100) + 18  
-FROM
-    information_schema.tables
-LIMIT 10;
-
 EOF
 
 
