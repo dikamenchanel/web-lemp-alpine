@@ -15,7 +15,7 @@ LABEL maintainer="Dikamen <dikamenchanel@systems>" \
     # org.opencontainers.image.revision=$VCS_REF \
     # org.opencontainers.image.created=$BUILD_DATE
 
-RUN apk add --no-cache mariadb mariadb-client && \
+RUN apk add --no-cache mariadb mariadb-client mariadb-server-utils pwgen && \
     rm -f /var/cache/apk/*
 
 ADD run.sh /scripts/run.sh
