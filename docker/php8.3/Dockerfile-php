@@ -25,6 +25,9 @@ php-sqlite3 \
 php-fileinfo \
 git \
 curl \
+php-soap \
+php-redis \
+php-bcmath \
 && rm -rf /var/cache/apk/*
 
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php && \

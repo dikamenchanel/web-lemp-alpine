@@ -1,5 +1,10 @@
 <?php
+
 var_dump("work");
+// Включаем отображение ошибок
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 function loadEnv($filePath) {
     if (!file_exists($filePath)) {
         throw new Exception(".env file not found at $filePath");
@@ -27,7 +32,7 @@ function loadEnv($filePath) {
 }
 
 // Загрузка переменных из .env файла
-loadEnv(__DIR__ . '../.env');
+loadEnv(__DIR__ . '/../.env');
 
 // Использование переменных
 $dbName = getenv('MYSQL_DATABASE');
@@ -36,7 +41,8 @@ $dbUser = getenv('MYSQL_USER');
 $dbPassword = getenv('MYSQL_PASSWORD');
 $charset = getenv('MYSQL_CHARSET');
 
-$dsn = "mysql:host=$dbHost;dbname=$db;charset=$charset";
+var_dump($port);
+$dsn = "mysql:host=mysql;dbname=$dbName;";
 $options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -48,8 +54,8 @@ try {
     $pdo = new PDO($dsn, $dbUser, $dbPassword, $options);
 
     // Выполнение запроса
-    $stmt = $pdo->query("SELECT * FROM test_table");
-
+    $stmt = $pdo->query("SELECT * FROM users");
+    var_dump($stmt);
     // Отображение данных
     echo "<table border='1'>
             <tr>
