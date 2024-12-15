@@ -24,7 +24,7 @@
 |   |   |-- www.conf
 |   |-- nginx/
 |   |   |-- conf.d/
-|   |   |        |-- default.conf
+|   |   |   |-- default.conf
 |   |   |-- nginx.conf
 |   |   |-- Dockerfile-nginx
 |   |-- mariadb/
