@@ -52,7 +52,7 @@
 
 5. **`docker-compose.yml`**: главный файл для запуска и управления всеми контейнерами.
    
-6. **`.env`**: главный файл для для переменных окружения.
+6. **`.env`**: главный файл для переменных окружения.
 
 ---
 
@@ -94,11 +94,13 @@
    ```bash
    git clone https://github.com/dikamenchanel/web-lemp-alpine.git
    ```
-   ИЛИ
+   или
 
    ```bash
    git clone git@github.com:dikamenchanel/web-lemp-alpine.git
    ```
+
+   перейдитете в директорию
 
    ```bash
    cd web-lemp-alpine
