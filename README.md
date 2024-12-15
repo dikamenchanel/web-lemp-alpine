@@ -63,6 +63,32 @@
 - [Docker](https://www.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/)
 
+
+### Установка Docker и Docker Compose
+
+1. Установите Docker:
+   - Для Linux (Ubuntu/Debian):
+     ```bash
+     sudo apt update
+     sudo apt install docker.io
+     sudo systemctl start docker
+     sudo systemctl enable docker
+     ```
+   - Для других ОС следуйте [официальной инструкции](https://docs.docker.com/get-docker/).
+
+2. Установите Docker Compose:
+   ```bash
+   sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep -Po '"tag_name": "\K[^"]*')/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+   sudo chmod +x /usr/local/bin/docker-compose
+   ```
+
+3. Проверьте корректность установки:
+   ```bash
+   docker --version
+   docker-compose --version
+   ```
+
+
 ### Запуск проекта
 1. Клонируйте репозиторий:
    ```bash
