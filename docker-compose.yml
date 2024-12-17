@@ -6,7 +6,7 @@ services:
       args:
         USER_ID: ${UID}
         GROUP_ID: ${GID}
-    container_name: {$CONTAINER_PHP_NAME}
+    container_name: ${CONTAINER_PHP_NAME}
     volumes:
       - ./:/var/www/html:rw
       - php_socket:/run/php
