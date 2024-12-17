@@ -16,7 +16,7 @@ services:
       - APP_ENV=local
       - APP_DEBUG=true
 
-  nginx:
+  my-nginx:
     build:
       context: ./docker/nginx
       dockerfile: Dockerfile-nginx
