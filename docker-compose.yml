@@ -6,7 +6,7 @@ services:
       args:
         USER_ID: ${UID}
         GROUP_ID: ${GID}
-    container_name: php83
+    container_name: {$CONTAINER_PHP_NAME}
     volumes:
       - ./:/var/www/html:rw
       - php_socket:/run/php
@@ -16,14 +16,14 @@ services:
       - APP_ENV=local
       - APP_DEBUG=true
 
-  my-nginx:
+  nginx:
     build:
       context: ./docker/nginx
       dockerfile: Dockerfile-nginx
       args:
         USER_ID: ${UID}
         GROUP_ID: ${GID}
-    container_name: nginx
+    container_name: ${CONTAINER_NGINX_NAME}
     # depens_on:
     #   - php
     volumes:
@@ -40,7 +40,7 @@ services:
     build:
       context: ./docker/mysql
       dockerfile: Dockerfile-mysql
-    container_name: mysql
+    container_name: ${CONTAINER_MYSQL_NAME}
     environment:
       MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
       MYSQL_USER_HOST: '${MYSQL_USER_HOST}'
@@ -57,7 +57,7 @@ services:
 
   redis:
     image: 'redis:alpine'
-    container_name: redis
+    container_name: ${CONTAINER_REDIS_NAME}
     ports:
         - '${REDIS_PORT_FORWARDING}:6379'
     networks:
