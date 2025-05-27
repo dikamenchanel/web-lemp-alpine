@@ -1,1 +1,3 @@
-kineto-admin/
+.gitignore
+.env
+env_exemple
