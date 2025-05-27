@@ -29,6 +29,9 @@ php-soap \
 php-redis \
 php-bcmath \
 php-ftp \
+php-iconv \
+php-simplexml \
+php-xmlreader \
 npm \
 && rm -rf /var/cache/apk/*
 
