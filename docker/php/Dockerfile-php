@@ -49,4 +49,4 @@ WORKDIR /var/www/html
 
 VOLUME /run/php
 
-CMD ["php-fpm83", "-F"]
+CMD ["php-fpm", "-F"]

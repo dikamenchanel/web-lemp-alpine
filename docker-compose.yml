@@ -1,7 +1,7 @@
 services:
   php:
     build:
-      context: ./docker/php8.3
+      context: ./docker/php
       dockerfile: Dockerfile-php
       args:
         USER_ID: ${UID}
