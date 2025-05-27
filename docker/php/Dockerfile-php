@@ -28,6 +28,8 @@ curl \
 php-soap \
 php-redis \
 php-bcmath \
+php-ftp \
+npm \
 && rm -rf /var/cache/apk/*
 
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php && \
@@ -37,7 +39,7 @@ RUN curl -sS https://getcomposer.org/installer -o composer-setup.php && \
 
 RUN addgroup -S nginx && adduser -S nginx -G nginx
 
-COPY ./www.conf /etc/php83/php-fpm.d/www.conf
+COPY ./www.conf /etc/php/php-fpm.d/www.conf
 
 RUN mkdir -p /run/php && \
     mkdir -p /var/www/html && \
@@ -49,4 +51,4 @@ WORKDIR /var/www/html
 
 VOLUME /run/php
 
-CMD ["php-fpm", "-F"]
+CMD ["php-fpm83", "-F"]

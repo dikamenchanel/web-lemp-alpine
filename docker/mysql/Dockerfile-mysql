@@ -27,6 +27,8 @@ RUN mkdir /docker-entrypoint-initdb.d && \
     mkdir /scripts/pre-init.d && \
     chmod -R 755 /scripts
 
+WORKDIR /var/lib/mysql
+
 RUN mariadb-install-db --user=mysql --datadir=/var/lib/mysql
 
 EXPOSE 3306

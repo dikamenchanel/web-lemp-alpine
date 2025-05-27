@@ -2,3 +2,5 @@
 .env
 public/
 LICENSE
+app/
+apexreal_admin.sql
